@@ -1,0 +1,286 @@
+/* ===========================================================
+   style.css — Complaint Management System
+   Path: complaints/static/complaints/style.css
+   Loaded once in base.html, applies to every page.
+=========================================================== */
+
+:root {
+  --brand-primary: #2450c4;
+  --brand-primary-dark: #1a3a99;
+  --brand-dark: #14213d;
+  --brand-accent: #ffb703;
+  --surface: #ffffff;
+  --surface-muted: #f4f6fb;
+  --text-primary: #1e2430;
+  --text-muted: #6b7280;
+  --border-soft: #e5e9f0;
+  --shadow-sm: 0 1px 3px rgba(20, 33, 61, 0.08);
+  --shadow-md: 0 4px 16px rgba(20, 33, 61, 0.10);
+  --radius: 10px;
+}
+
+* {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background-color: var(--surface-muted) !important;
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  background: linear-gradient(90deg, var(--brand-dark) 0%, var(--brand-primary-dark) 100%) !important;
+  box-shadow: var(--shadow-md);
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navbar-brand::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: var(--brand-accent);
+  border-radius: 50%;
+}
+
+.navbar .text-white {
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.navbar .text-white:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+/* ---------- Layout container ---------- */
+.container {
+  max-width: 1080px;
+  flex: 1;
+  padding-bottom: 3rem;
+}
+
+/* ---------- Alerts ---------- */
+.alert-success {
+  background-color: #eafaf0;
+  border: 1px solid #b6ecc8;
+  color: #157347;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  font-weight: 500;
+  padding: 0.85rem 1.1rem;
+}
+
+/* ---------- Headings ---------- */
+h1, h2, h3 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--brand-dark);
+}
+
+h3 {
+  margin-bottom: 1.25rem;
+}
+
+/* ===========================================================
+   Submit Complaint form (complaint_form.html)
+   Rendered via {{ form.as_p }} — each field is wrapped in <p>
+=========================================================== */
+
+.form-page-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0 3rem;
+}
+
+.form-card {
+  background: var(--surface);
+  width: 100%;
+  max-width: 640px;
+  border-radius: 14px;
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.form-card-header {
+  background: linear-gradient(90deg, var(--brand-dark) 0%, var(--brand-primary-dark) 100%);
+  padding: 1.75rem 2rem;
+}
+
+.form-card-header h3 {
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.form-card-body {
+  padding: 2rem;
+}
+
+/* {{ form.as_p }} wraps every field in a <p> tag */
+.form-card-body form p {
+  margin-bottom: 1.35rem;
+}
+
+.form-card-body form label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+}
+
+.form-card-body form input[type="text"],
+.form-card-body form input[type="email"],
+.form-card-body form input[type="tel"],
+.form-card-body form input[type="number"],
+.form-card-body form select,
+.form-card-body form textarea {
+  width: 100%;
+  border: 1px solid #d7dce5;
+  border-radius: 8px;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  background-color: #fbfcfe;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.form-card-body form textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.form-card-body form input:focus,
+.form-card-body form select:focus,
+.form-card-body form textarea:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(36, 80, 196, 0.15);
+}
+
+/* Django validation error list */
+.form-card-body form ul.errorlist {
+  list-style: none;
+  padding: 0;
+  margin: 0.35rem 0 0;
+}
+
+.form-card-body form ul.errorlist li {
+  font-size: 0.82rem;
+  color: #dc3545;
+  font-weight: 500;
+}
+
+.form-card-body .btn-primary {
+  background-color: var(--brand-primary);
+  border-color: var(--brand-primary);
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.6rem 2rem;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.form-card-body .btn-primary:hover {
+  background-color: var(--brand-primary-dark);
+  border-color: var(--brand-primary-dark);
+  transform: translateY(-1px);
+}
+
+/* ===========================================================
+   Complaint list page (complaint_list.html)
+=========================================================== */
+
+.list-page-wrapper {
+  padding-top: 0.5rem;
+}
+
+/* Filter bar */
+.filter-bar {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 1rem 1.25rem;
+}
+
+.filter-bar .form-control,
+.filter-bar .form-select {
+  border-radius: 8px;
+  border: 1px solid var(--border-soft);
+}
+
+.filter-bar .form-control:focus,
+.filter-bar .form-select:focus {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px rgba(36, 80, 196, 0.15);
+}
+
+.filter-bar .btn-secondary {
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* Table */
+.table {
+  background-color: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  margin-top: 1rem;
+}
+
+.table th {
+  background-color: var(--brand-dark);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  text-transform: uppercase;
+  font-size: 0.76rem;
+  letter-spacing: 0.03em;
+  vertical-align: middle;
+}
+
+.table td {
+  vertical-align: middle;
+  font-size: 0.92rem;
+}
+
+.table tbody tr:hover {
+  background-color: var(--surface-muted);
+}
+
+.badge {
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.4em 0.75em;
+  border-radius: 999px;
+}
+
+.table .btn-sm {
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.8rem;
+}

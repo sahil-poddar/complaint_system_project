@@ -1,0 +1,40 @@
+{% extends 'complaints/base.html' %}
+{% block content %}
+<div class="list-page-wrapper">
+  <h3>All Complaints</h3>
+
+  <form class="row g-2 mb-3 filter-bar">
+    <div class="col-auto">
+      <input class="form-control" name="q" value="{{ query }}" placeholder="Search name/subject/email">
+    </div>
+    <div class="col-auto">
+      <select class="form-select" name="status">
+        <option value="">All Status</option>
+        <option value="Pending" {% if status_filter == "Pending" %}selected{% endif %}>Pending</option>
+        <option value="Solved" {% if status_filter == "Solved" %}selected{% endif %}>Solved</option>
+      </select>
+    </div>
+    <div class="col-auto"><button class="btn btn-secondary">Filter</button></div>
+  </form>
+
+  <table class="table table-bordered bg-white">
+    <tr><th>Name</th><th>Type</th><th>Subject</th><th>Status</th><th>Actions</th></tr>
+    {% for c in complaints %}
+    <tr>
+      <td>{{ c.name }}</td>
+      <td>{{ c.complaint_type }}</td>
+      <td>{{ c.subject }}</td>
+      <td>
+        <span class="badge {% if c.status == 'Solved' %}bg-success{% else %}bg-warning text-dark{% endif %}">
+          {{ c.status }}
+        </span>
+      </td>
+      <td>
+        <a class="btn btn-sm btn-outline-primary" href="{% url 'update_status' c.pk %}">Toggle Status</a>
+        <a class="btn btn-sm btn-outline-danger" href="{% url 'delete_complaint' c.pk %}">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}
